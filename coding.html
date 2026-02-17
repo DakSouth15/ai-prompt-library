@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coding Prompts – PromptLab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --border: #1e1e2e;
+      --accent: #7c6aff;
+      --accent2: #ff6a9e;
+      --accent3: #6affd4;
+      --text: #f0f0f8;
+      --muted: #7a7a9a;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      width: 600px; height: 600px;
+      background: var(--accent);
+      top: -200px; left: -200px;
+    }
+    body::after {
+      width: 500px; height: 500px;
+      background: var(--accent2);
+      bottom: -150px; right: -150px;
+    }
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    header {
+      padding: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb span { color: var(--accent); }
+    .hero {
+      padding: 4rem 0 3rem;
+      text-align: center;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(124, 106, 255, 0.3);
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+      font-weight: 300;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .grid-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .card {
+      width: calc(33.333% - 0.67rem);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--card-color, var(--accent)), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--card-color, var(--accent));
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .card:hover::before { opacity: 0.06; }
+    .card-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; position: relative; }
+    .card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; position: relative; }
+    .card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; position: relative; }
+
+    .card:nth-child(1) { --card-color: #7c6aff; }
+    .card:nth-child(2) { --card-color: #ff6a9e; }
+    .card:nth-child(3) { --card-color: #6affd4; }
+    .card:nth-child(4) { --card-color: #ffb86a; }
+    .card:nth-child(5) { --card-color: #6ab8ff; }
+    .card:nth-child(6) { --card-color: #b86aff; }
+    .card:nth-child(7) { --card-color: #ff9f6a; }
+
+    footer {
+      text-align: center;
+      padding: 4rem 0 2rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 768px) { .card { width: calc(50% - 0.5rem); } }
+    @media (max-width: 480px) { .card { width: 100%; } }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a class="logo" href="index.html">Prompt<span>Lab</span></a>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a> › <span>Coding Prompts</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-tag">💻 Coding Prompts</div>
+      <h1>Build anything with<br/><em>AI-powered code</em></h1>
+      <p>Pick a coding category and get ready-to-use prompts that help you build faster, debug smarter, and ship better projects.</p>
+    </section>
+
+    <p class="grid-label">Choose a subcategory</p>
+
+    <div class="category-grid">
+      <a class="card" href="coding-website.html">
+        <span class="card-icon">🌐</span>
+        <div class="card-title">Website Builder</div>
+        <div class="card-desc">Prompts for landing pages, portfolios, and full websites</div>
+      </a>
+      <a class="card" href="coding-calculator.html">
+        <span class="card-icon">🧮</span>
+        <div class="card-title">Calculator Builder</div>
+        <div class="card-desc">Build interactive calculators and tools with clean UI</div>
+      </a>
+      <a class="card" href="coding-debug.html">
+        <span class="card-icon">🐛</span>
+        <div class="card-title">Debugging Help</div>
+        <div class="card-desc">Find and fix bugs faster with precise AI prompts</div>
+      </a>
+      <a class="card" href="coding-api.html">
+        <span class="card-icon">🔌</span>
+        <div class="card-title">API Integration</div>
+        <div class="card-desc">Connect APIs and services with working code examples</div>
+      </a>
+      <a class="card" href="coding-newsletter.html">
+        <span class="card-icon">📧</span>
+        <div class="card-title">Newsletter Setup</div>
+        <div class="card-desc">Code email templates, signup forms, and automation</div>
+      </a>
+      <a class="card" href="coding-components.html">
+        <span class="card-icon">🧩</span>
+        <div class="card-title">UI Components</div>
+        <div class="card-desc">Buttons, modals, navbars, and reusable interface parts</div>
+      </a>
+      <a class="card" href="coding-scripts.html">
+        <span class="card-icon">⚡</span>
+        <div class="card-title">Automation Scripts</div>
+        <div class="card-desc">Python, JS, and bash scripts to automate repetitive tasks</div>
+      </a>
+    </div>
+
+    <footer>Built with AI · PromptLab © 2025</footer>
+  </div>
+</body>
+</html>
