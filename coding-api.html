@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>API Integration Prompts – PromptLab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0f; --surface: #13131a; --border: #1e1e2e; --accent: #ffb86a; --accent2: #ff6a9e; --text: #f0f0f8; --muted: #7a7a9a; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    body::before, body::after { content: ''; position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; z-index: 0; }
+    body::before { width: 600px; height: 600px; background: var(--accent); top: -200px; left: -200px; }
+    body::after { width: 500px; height: 500px; background: var(--accent2); bottom: -150px; right: -150px; }
+    .wrapper { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+    header { padding: 2rem 0 1rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+    .logo span { color: #7c6aff; }
+    .breadcrumb { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb span { color: var(--accent); }
+    .hero { padding: 3rem 0 2.5rem; text-align: center; }
+    .hero-tag { display: inline-block; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(255,184,106,0.3); padding: 0.35rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both; }
+    .hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1rem; animation: fadeUp 0.6s 0.1s ease both; }
+    .hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1rem; color: var(--muted); max-width: 480px; margin: 0 auto; line-height: 1.7; font-weight: 300; animation: fadeUp 0.6s 0.2s ease both; }
+    .prompts-list { margin: 3rem 0; display: flex; flex-direction: column; gap: 1rem; animation: fadeUp 0.6s 0.3s ease both; }
+    .prompt-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem 1.75rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+    .prompt-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .prompt-number { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; min-width: 24px; padding-top: 0.15rem; }
+    .prompt-text { flex: 1; font-size: 0.95rem; line-height: 1.65; color: var(--text); }
+    .copy-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; padding: 0.4rem 0.9rem; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; flex-shrink: 0; }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .copy-btn.copied { border-color: #6affd4; color: #6affd4; }
+    footer { text-align: center; padding: 4rem 0 2rem; color: var(--muted); font-size: 0.8rem; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 600px) { .prompt-card { flex-direction: column; } .copy-btn { align-self: flex-start; } }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a class="logo" href="index.html">Prompt<span>Lab</span></a>
+      <div class="breadcrumb"><a href="index.html">Home</a> › <a href="coding.html">Coding</a> › <span>API Integration</span></div>
+    </header>
+    <section class="hero">
+      <div class="hero-tag">🔌 API Integration</div>
+      <h1>Connect any API<br/><em>without the headache</em></h1>
+      <p>Prompts for fetching data, authenticating, handling responses, and wiring up third-party services fast.</p>
+    </section>
+    <div class="prompts-list">
+      <div class="prompt-card"><div class="prompt-number">01</div><div class="prompt-text">Write a JavaScript fetch call to the [API name] API. The endpoint is [URL]. I need to send [GET/POST] request with these parameters: [list params]. Include proper error handling, log the response to console, and show me how to display the result on a webpage in a clean card layout.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">02</div><div class="prompt-text">I need to add API key authentication to my requests. The API uses [Bearer token / API key in header / query param]. Here is my current fetch code: [paste code]. Update it to include proper authentication, store the key securely using environment variables, and explain best practices for keeping API keys safe.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">03</div><div class="prompt-text">Build a weather app using the OpenWeatherMap API. Allow users to search by city name, display current temperature, weather condition, humidity, and wind speed. Use vanilla JavaScript with async/await, handle errors gracefully when the city isn't found, and style it with a clean card UI.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">04</div><div class="prompt-text">I'm getting CORS errors when calling this API from my frontend: [paste your fetch code and error]. Explain exactly why CORS errors happen, whether I need to fix this on the frontend or backend, and give me working code to solve the problem — either a proxy solution or proper headers setup.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">05</div><div class="prompt-text">Create a Node.js Express route that calls the [API name] API and returns the data to my frontend. The API endpoint is [URL] and requires [authentication method]. Handle rate limiting, add response caching to avoid redundant calls, and include error handling that returns useful messages to the client.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">06</div><div class="prompt-text">I need to paginate through API results. The API returns [X] results per page using [cursor / page number / offset] pagination. Here is my current code: [paste code]. Rewrite it to automatically fetch all pages, combine the results, show a loading indicator, and handle errors on any individual page request.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">07</div><div class="prompt-text">Set up a webhook handler in Node.js/Express that receives POST requests from [service — e.g. Stripe, GitHub, Twilio]. Verify the webhook signature for security, parse the event type, and show me how to handle at least 3 different event types with appropriate responses and logging.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">08</div><div class="prompt-text">I want to integrate the Stripe payments API into my website. I need to: create a checkout session, redirect the user to payment, and handle the success/cancel redirects. Give me the complete frontend and backend code in [language/framework], explain each step, and tell me what to test before going live.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+    </div>
+    <footer>Built with AI · PromptLab © 2025</footer>
+  </div>
+  <script>
+    function copyPrompt(btn) {
+      const text = btn.previousElementSibling.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!'; btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
