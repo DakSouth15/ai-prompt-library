@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interview Prep Prompts – PromptLab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0f; --surface: #13131a; --border: #1e1e2e; --accent: #b86aff; --accent2: #ff6a9e; --text: #f0f0f8; --muted: #7a7a9a; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    body::before, body::after { content: ''; position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; z-index: 0; }
+    body::before { width: 600px; height: 600px; background: var(--accent); top: -200px; left: -200px; }
+    body::after { width: 500px; height: 500px; background: var(--accent2); bottom: -150px; right: -150px; }
+    .wrapper { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+    header { padding: 2rem 0 1rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+    .logo span { color: #7c6aff; }
+    .breadcrumb { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb span { color: var(--accent); }
+    .hero { padding: 3rem 0 2.5rem; text-align: center; }
+    .hero-tag { display: inline-block; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(184,106,255,0.3); padding: 0.35rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both; }
+    .hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1rem; animation: fadeUp 0.6s 0.1s ease both; }
+    .hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1rem; color: var(--muted); max-width: 480px; margin: 0 auto; line-height: 1.7; font-weight: 300; animation: fadeUp 0.6s 0.2s ease both; }
+    .prompts-list { margin: 3rem 0; display: flex; flex-direction: column; gap: 1rem; animation: fadeUp 0.6s 0.3s ease both; }
+    .prompt-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem 1.75rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+    .prompt-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .prompt-number { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; min-width: 24px; padding-top: 0.15rem; }
+    .prompt-text { flex: 1; font-size: 0.95rem; line-height: 1.65; color: var(--text); }
+    .copy-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; padding: 0.4rem 0.9rem; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; flex-shrink: 0; }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .copy-btn.copied { border-color: #6affd4; color: #6affd4; }
+    footer { text-align: center; padding: 4rem 0 2rem; color: var(--muted); font-size: 0.8rem; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 600px) { .prompt-card { flex-direction: column; } .copy-btn { align-self: flex-start; } }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a class="logo" href="index.html">Prompt<span>Lab</span></a>
+      <div class="breadcrumb"><a href="index.html">Home</a> › <a href="research.html">Deep Research</a> › <span>Interview Prep</span></div>
+    </header>
+    <section class="hero">
+      <div class="hero-tag">🎙️ Interview Prep</div>
+      <h1>Walk in knowing<br/><em>more than they expect</em></h1>
+      <p>Prompts for researching people, companies, and topics so you show up to every meeting fully prepared.</p>
+    </section>
+    <div class="prompts-list">
+      <div class="prompt-card"><div class="prompt-number">01</div><div class="prompt-text">I have an interview at [Company Name] for a [role] position. Research this company for me and give me: their core business model, recent news or developments, the key challenges they're facing, their culture and values based on public information, and 3 smart questions I could ask that would impress an interviewer.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">02</div><div class="prompt-text">I'm meeting with [person's name / job title] at [company]. Help me prepare. Based on what someone in their role typically cares about, what are their likely priorities and pain points? What topics should I bring up to make the conversation valuable for them? What should I avoid?</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">03</div><div class="prompt-text">I need to prepare for a behavioral interview for a [role] at [type of company]. Give me the 10 most likely behavioral questions they'll ask, the STAR framework answer structure, and for each question, coach me on what the interviewer is really looking for and what a strong answer includes.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">04</div><div class="prompt-text">Help me research [industry/sector] before a job interview. What are the most important trends right now, the biggest challenges facing companies in this space, the key metrics or KPIs that matter, and the vocabulary and concepts I should be comfortable using to sound credible?</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">05</div><div class="prompt-text">I'm preparing for a case interview at a consulting / strategy firm. Walk me through the most common case types, the frameworks used to solve them, the things interviewers are really evaluating, and give me a sample case with a model answer I can use to practice.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">06</div><div class="prompt-text">I have a negotiation or sales meeting with [type of person or company]. Research the typical objections, priorities, and decision-making process of someone in their position. What do they care about most? What are their common sticking points? How should I frame my value proposition to resonate with them?</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">07</div><div class="prompt-text">Help me prepare for a panel interview with [describe the panel — e.g. hiring manager, team lead, HR, and a peer]. What are each of these people likely evaluating me on? What questions is each person most likely to ask? How should I adjust my answers depending on who's asking?</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">08</div><div class="prompt-text">I just got an informational interview with [person's role] at [company or industry]. I want to make a great impression and learn as much as possible. Give me 10 smart, specific questions to ask that go beyond generic advice — questions that show I've done my homework and genuinely want to understand their experience.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+    </div>
+    <footer>Built with AI · PromptLab © 2025</footer>
+  </div>
+  <script>
+    function copyPrompt(btn) {
+      const text = btn.previousElementSibling.innerText;
+      navigator.clipboard.writeText(text).then(() => { btn.textContent = 'Copied!'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000); });
+    }
+  </script>
+</body>
+</html>
