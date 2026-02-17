@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog & SEO Content Prompts – PromptLab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0f; --surface: #13131a; --border: #1e1e2e; --accent: #6ab8ff; --accent2: #6affd4; --text: #f0f0f8; --muted: #7a7a9a; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    body::before, body::after { content: ''; position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; z-index: 0; }
+    body::before { width: 600px; height: 600px; background: var(--accent); top: -200px; left: -200px; }
+    body::after { width: 500px; height: 500px; background: var(--accent2); bottom: -150px; right: -150px; }
+    .wrapper { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+    header { padding: 2rem 0 1rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+    .logo span { color: #7c6aff; }
+    .breadcrumb { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb span { color: var(--accent); }
+    .hero { padding: 3rem 0 2.5rem; text-align: center; }
+    .hero-tag { display: inline-block; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(106,184,255,0.3); padding: 0.35rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both; }
+    .hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1rem; animation: fadeUp 0.6s 0.1s ease both; }
+    .hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1rem; color: var(--muted); max-width: 480px; margin: 0 auto; line-height: 1.7; font-weight: 300; animation: fadeUp 0.6s 0.2s ease both; }
+    .prompts-list { margin: 3rem 0; display: flex; flex-direction: column; gap: 1rem; animation: fadeUp 0.6s 0.3s ease both; }
+    .prompt-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem 1.75rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+    .prompt-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .prompt-number { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; min-width: 24px; padding-top: 0.15rem; }
+    .prompt-text { flex: 1; font-size: 0.95rem; line-height: 1.65; color: var(--text); }
+    .copy-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; padding: 0.4rem 0.9rem; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; flex-shrink: 0; }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .copy-btn.copied { border-color: #6affd4; color: #6affd4; }
+    footer { text-align: center; padding: 4rem 0 2rem; color: var(--muted); font-size: 0.8rem; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 600px) { .prompt-card { flex-direction: column; } .copy-btn { align-self: flex-start; } }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a class="logo" href="index.html">Prompt<span>Lab</span></a>
+      <div class="breadcrumb"><a href="index.html">Home</a> › <a href="writing.html">Writing</a> › <span>Blog &amp; SEO Content</span></div>
+    </header>
+    <section class="hero">
+      <div class="hero-tag">✨ Blog & SEO Content</div>
+      <h1>Content that ranks<br/><em>and actually gets read</em></h1>
+      <p>Prompts for blog posts, SEO articles, content outlines, and writing that brings in organic traffic.</p>
+    </section>
+    <div class="prompts-list">
+      <div class="prompt-card"><div class="prompt-number">01</div><div class="prompt-text">Write a blog post outline for the topic: [your topic]. Target keyword: [keyword]. Audience: [describe readers]. Include: an SEO-optimized title, a meta description under 155 characters, an introduction hook, 4-6 H2 sections with supporting H3s where needed, and a conclusion with CTA. Make the structure answer the search intent completely.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">02</div><div class="prompt-text">Write the introduction for a blog post about [topic] targeting [keyword]. Open with a hook — a surprising stat, a relatable pain point, or a bold statement. Explain why this matters to the reader. Preview what they'll learn. Make them feel like they're in exactly the right place. Keep it under 150 words and naturally include the target keyword.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">03</div><div class="prompt-text">I need to write a 'what is [topic]' explainer article for SEO. The reader has zero background. Structure it as: definition in plain English, why it matters, how it works (step by step), common misconceptions, a practical example, and an FAQ section with 5 questions people actually search for. Target keyword: [keyword].</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">04</div><div class="prompt-text">Help me write a listicle: '[Number] [Adjective] Ways to [Achieve Result]' for [audience]. Each item should: have a bolded headline, 2-3 sentences of genuinely useful explanation, and where possible a concrete example. Make the items specific and actionable — not generic advice that could apply to anything.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">05</div><div class="prompt-text">Rewrite this blog post section to be more engaging and SEO-friendly: [paste section]. Keep the core information but: improve the readability (shorter sentences, clearer structure), naturally weave in the keyword [keyword] without keyword stuffing, add a subheading, and make the opening sentence of the section stronger.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">06</div><div class="prompt-text">Write a comparison article: '[Option A] vs [Option B]: Which is Better for [Use Case]?' Structure it as: quick answer up top for skimmers, overview of each option, side-by-side comparison table, who should choose each one, and a final recommendation. Target keyword: [keyword]. Be direct and opinionated — don't sit on the fence.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">07</div><div class="prompt-text">I want to update an old blog post to rank better. Here is the post: [paste or describe it]. Identify: what's outdated, what's missing compared to what the top-ranking posts cover, which sections to expand, where to add internal or external links, and whether the title and meta description need updating. Give me a full refresh plan.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">08</div><div class="prompt-text">Write 10 blog post title ideas for the topic of [topic] targeting [audience]. Mix formats: how-to, listicle, question-based, year-specific, and opinion-based. For each title, note the primary keyword it targets and why it would perform well in search. Mark the 3 you think have the best combination of SEO value and click appeal.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+    </div>
+    <footer>Built with AI · PromptLab © 2025</footer>
+  </div>
+  <script>
+    function copyPrompt(btn) {
+      const text = btn.previousElementSibling.innerText;
+      navigator.clipboard.writeText(text).then(() => { btn.textContent = 'Copied!'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000); });
+    }
+  </script>
+</body>
+</html>
