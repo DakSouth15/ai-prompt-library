@@ -130,10 +130,20 @@
     }
 
     .category-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      display: flex;
+      flex-direction: column;
       gap: 1rem;
       animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .grid-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .grid-row .card {
+      flex: 0 0 calc(33.333% - 0.67rem);
     }
 
     .card {
@@ -186,11 +196,11 @@
     }
 
     /* Card color accents */
-    .card:nth-child(1) { --card-color: #7c6aff; }
-    .card:nth-child(2) { --card-color: #ff6a9e; }
-    .card:nth-child(3) { --card-color: #6affd4; }
-    .card:nth-child(4) { --card-color: #ffb86a; }
-    .card:nth-child(5) { --card-color: #6ab8ff; }
+    .grid-row:first-child .card:nth-child(1) { --card-color: #7c6aff; }
+    .grid-row:first-child .card:nth-child(2) { --card-color: #ff6a9e; }
+    .grid-row:first-child .card:nth-child(3) { --card-color: #6affd4; }
+    .grid-row:last-child .card:nth-child(1)  { --card-color: #ffb86a; }
+    .grid-row:last-child .card:nth-child(2)  { --card-color: #6ab8ff; }
 
     /* FOOTER */
     footer {
@@ -222,37 +232,41 @@
     <section class="hero">
       <div class="hero-tag">✦ AI Prompt Library</div>
       <h1>How can I help you<br/><em>prompt today?</em></h1>
-      <p>Browse hundreds of ready-to-use AI prompts organized by category. Find what you need, copy it, and get better results instantly.</p>
+      <p>Browse several of ready-to-use AI prompts organized by category. Find what you need, copy it, and get better results instantly.</p>
     </section>
 
     <p class="grid-label">Choose a category to get started</p>
 
     <div class="category-grid">
-      <a class="card" href="coding.html">
-        <span class="card-icon">💻</span>
-        <div class="card-title">Coding Prompts</div>
-        <div class="card-desc">Build projects, debug code, and create with AI assistance</div>
-      </a>
-      <a class="card" href="research.html">
-        <span class="card-icon">🔍</span>
-        <div class="card-title">Deep Research</div>
-        <div class="card-desc">Dig deeper, analyze faster, and summarize smarter</div>
-      </a>
-      <a class="card" href="writing.html">
-        <span class="card-icon">✍️</span>
-        <div class="card-title">Writing Prompts</div>
-        <div class="card-desc">Emails, essays, content, and creative writing</div>
-      </a>
-      <a class="card" href="image.html">
-        <span class="card-icon">🎨</span>
-        <div class="card-title">Image Generation</div>
-        <div class="card-desc">Get stunning results from Midjourney, DALL·E, and more</div>
-      </a>
-      <a class="card" href="fun.html">
-        <span class="card-icon">💬</span>
-        <div class="card-title">Fun & Conversation</div>
-        <div class="card-desc">Games, roleplay, and wild AI conversation starters</div>
-      </a>
+      <div class="grid-row">
+        <a class="card" href="coding.html">
+          <span class="card-icon">💻</span>
+          <div class="card-title">Coding Prompts</div>
+          <div class="card-desc">Build projects, debug code, and create with AI assistance</div>
+        </a>
+        <a class="card" href="research.html">
+          <span class="card-icon">🔍</span>
+          <div class="card-title">Deep Research</div>
+          <div class="card-desc">Dig deeper, analyze faster, and summarize smarter</div>
+        </a>
+        <a class="card" href="writing.html">
+          <span class="card-icon">✍️</span>
+          <div class="card-title">Writing Prompts</div>
+          <div class="card-desc">Emails, essays, content, and creative writing</div>
+        </a>
+      </div>
+      <div class="grid-row">
+        <a class="card" href="image.html">
+          <span class="card-icon">🎨</span>
+          <div class="card-title">Image Generation</div>
+          <div class="card-desc">Get stunning results from Midjourney, DALL·E, and more</div>
+        </a>
+        <a class="card" href="fun.html">
+          <span class="card-icon">💬</span>
+          <div class="card-title">Fun & Conversation</div>
+          <div class="card-desc">Games, roleplay, and wild AI conversation starters</div>
+        </a>
+      </div>
     </div>
 
     <footer>
