@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Stories Prompts – PromptLab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0f; --surface: #13131a; --border: #1e1e2e; --accent: #ff9f6a; --accent2: #b86aff; --text: #f0f0f8; --muted: #7a7a9a; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    body::before, body::after { content: ''; position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; z-index: 0; }
+    body::before { width: 600px; height: 600px; background: var(--accent); top: -200px; left: -200px; }
+    body::after { width: 500px; height: 500px; background: var(--accent2); bottom: -150px; right: -150px; }
+    .wrapper { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+    header { padding: 2rem 0 1rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+    .logo span { color: #7c6aff; }
+    .breadcrumb { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb span { color: var(--accent); }
+    .hero { padding: 3rem 0 2.5rem; text-align: center; }
+    .hero-tag { display: inline-block; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(255,159,106,0.3); padding: 0.35rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both; }
+    .hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1rem; animation: fadeUp 0.6s 0.1s ease both; }
+    .hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1rem; color: var(--muted); max-width: 480px; margin: 0 auto; line-height: 1.7; font-weight: 300; animation: fadeUp 0.6s 0.2s ease both; }
+    .prompts-list { margin: 3rem 0; display: flex; flex-direction: column; gap: 1rem; animation: fadeUp 0.6s 0.3s ease both; }
+    .prompt-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem 1.75rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+    .prompt-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .prompt-number { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; min-width: 24px; padding-top: 0.15rem; }
+    .prompt-text { flex: 1; font-size: 0.95rem; line-height: 1.65; color: var(--text); }
+    .copy-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; padding: 0.4rem 0.9rem; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; flex-shrink: 0; }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .copy-btn.copied { border-color: #6affd4; color: #6affd4; }
+    footer { text-align: center; padding: 4rem 0 2rem; color: var(--muted); font-size: 0.8rem; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 600px) { .prompt-card { flex-direction: column; } .copy-btn { align-self: flex-start; } }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a class="logo" href="index.html">Prompt<span>Lab</span></a>
+      <div class="breadcrumb"><a href="index.html">Home</a> › <a href="fun.html">Fun &amp; Conversation</a> › <span>Interactive Stories</span></div>
+    </header>
+    <section class="hero">
+      <div class="hero-tag">📖 Interactive Stories</div>
+      <h1>Stories you actually<br/><em>get to live inside</em></h1>
+      <p>Choose-your-own-adventure, collaborative fiction, and interactive storytelling where your choices actually matter.</p>
+    </section>
+    <div class="prompts-list">
+      <div class="prompt-card"><div class="prompt-number">01</div><div class="prompt-text">Start a choose-your-own-adventure story set in [setting — e.g. a haunted lighthouse, a generation ship, a fantasy kingdom]. I am the main character. Write the opening scene in vivid detail (about 200 words), then give me exactly 3 choices for what to do next. Each choice should lead somewhere meaningfully different. Begin.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">02</div><div class="prompt-text">Let's write a story together. You write a paragraph, then I write a paragraph, and we alternate until we have something complete. The genre is [genre]. The opening image is [describe a single evocative image or moment]. You write the first paragraph — set the scene, introduce a character or tension, and leave me somewhere interesting to continue from.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">03</div><div class="prompt-text">I want to experience a branching story where my choices have real consequences that echo later. Genre: [thriller / romance / sci-fi / fantasy / horror]. Start the story and track the choices I make. Reference them later in the narrative to show they mattered. Make me feel like this story is specifically mine based on how I play it.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">04</div><div class="prompt-text">Tell me a story in the second person ('you walk into...') where I am the protagonist. Genre: [describe]. Make it immersive — describe what I see, hear, smell, and feel. Include moments where you pause and ask me how I want to respond, but also make choices for me that reveal my character in interesting ways. Start now.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">05</div><div class="prompt-text">Let's do a collaborative world-building story. We're creating a world together. You establish the first rule of this world — something that makes it fundamentally different from ours. I'll add the second rule. We alternate adding rules and then we start telling stories that exist within those rules. You go first.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">06</div><div class="prompt-text">Start a mystery story where I am the detective. A crime has occurred: [describe the crime or let AI invent one]. Present me with a scene, 3 suspects with motives and inconsistencies in their stories, and physical clues I can investigate. I'll direct the investigation by asking questions and making choices. Make it solvable but not obvious.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">07</div><div class="prompt-text">Tell me an original bedtime story — but make it one I haven't heard before. No fairy tale tropes, no familiar archetypes. Invent a genuinely new kind of protagonist, a strange world, and a conflict I haven't seen before. The ending should feel earned and quietly surprising. Aim for about 400 words. Make it something worth remembering.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">08</div><div class="prompt-text">Let's play Story Roulette. You start a story with a completely unexpected opening line — something that immediately creates intrigue or surprise. I add the next sentence. You add the next. We alternate one sentence at a time and see where the story goes with no planning. The only rule: always say yes to what the other person wrote. You go first.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+    </div>
+    <footer>Built with AI · PromptLab © 2025</footer>
+  </div>
+  <script>
+    function copyPrompt(btn) {
+      const text = btn.previousElementSibling.innerText;
+      navigator.clipboard.writeText(text).then(() => { btn.textContent = 'Copied!'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000); });
+    }
+  </script>
+</body>
+</html>
