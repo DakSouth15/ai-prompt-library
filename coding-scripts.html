@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Automation Scripts Prompts – PromptLab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0f; --surface: #13131a; --border: #1e1e2e; --accent: #ff9f6a; --accent2: #7c6aff; --text: #f0f0f8; --muted: #7a7a9a; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    body::before, body::after { content: ''; position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; z-index: 0; }
+    body::before { width: 600px; height: 600px; background: var(--accent); top: -200px; left: -200px; }
+    body::after { width: 500px; height: 500px; background: var(--accent2); bottom: -150px; right: -150px; }
+    .wrapper { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+    header { padding: 2rem 0 1rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+    .logo span { color: #7c6aff; }
+    .breadcrumb { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb span { color: var(--accent); }
+    .hero { padding: 3rem 0 2.5rem; text-align: center; }
+    .hero-tag { display: inline-block; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(255,159,106,0.3); padding: 0.35rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both; }
+    .hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1rem; animation: fadeUp 0.6s 0.1s ease both; }
+    .hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1rem; color: var(--muted); max-width: 480px; margin: 0 auto; line-height: 1.7; font-weight: 300; animation: fadeUp 0.6s 0.2s ease both; }
+    .prompts-list { margin: 3rem 0; display: flex; flex-direction: column; gap: 1rem; animation: fadeUp 0.6s 0.3s ease both; }
+    .prompt-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem 1.75rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+    .prompt-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .prompt-number { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; min-width: 24px; padding-top: 0.15rem; }
+    .prompt-text { flex: 1; font-size: 0.95rem; line-height: 1.65; color: var(--text); }
+    .copy-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; padding: 0.4rem 0.9rem; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; flex-shrink: 0; }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .copy-btn.copied { border-color: #6affd4; color: #6affd4; }
+    footer { text-align: center; padding: 4rem 0 2rem; color: var(--muted); font-size: 0.8rem; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 600px) { .prompt-card { flex-direction: column; } .copy-btn { align-self: flex-start; } }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a class="logo" href="index.html">Prompt<span>Lab</span></a>
+      <div class="breadcrumb"><a href="index.html">Home</a> › <a href="coding.html">Coding</a> › <span>Automation Scripts</span></div>
+    </header>
+    <section class="hero">
+      <div class="hero-tag">⚡ Automation Scripts</div>
+      <h1>Automate the boring stuff<br/><em>in minutes</em></h1>
+      <p>Prompts for Python, JavaScript, and bash scripts that save you hours of repetitive manual work.</p>
+    </section>
+    <div class="prompts-list">
+      <div class="prompt-card"><div class="prompt-number">01</div><div class="prompt-text">Write a Python script that watches a folder for new files and automatically renames them based on a pattern. The pattern is: [describe your naming convention — e.g. date-prefix, lowercase, remove spaces]. Run continuously in the background, log each rename to a text file, and skip files that already match the pattern.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">02</div><div class="prompt-text">Create a Python script that reads a CSV file at [path], processes each row by [describe what to do — e.g. format dates, clean phone numbers, remove duplicates], and writes the cleaned output to a new CSV. Print a summary showing how many rows were processed, changed, and skipped.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">03</div><div class="prompt-text">Write a bash script that backs up a directory to a timestamped folder automatically. It should: create a backup at ~/backups/YYYY-MM-DD/, compress it as a .tar.gz, delete backups older than 30 days, log success or failure to a log file, and be set up to run daily via cron. Show me the cron command too.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">04</div><div class="prompt-text">Build a Python web scraper that visits [URL], extracts [what data — e.g. product names, prices, links], and saves it to a CSV file. Handle pagination by following "next page" links until there are none. Add a 1-2 second delay between requests, respect robots.txt, and include error handling for failed requests.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">05</div><div class="prompt-text">Write a JavaScript/Node.js script that reads all markdown files in a folder, extracts the H1 title and first paragraph from each, and generates a JSON index file with each file's name, title, excerpt, and word count. This will be used to build a search index for a static site.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">06</div><div class="prompt-text">Create a Python script that sends me a daily email summary using the Gmail API. It should pull data from [source — e.g. a CSV, an API, a folder], format it as a clean HTML email with a subject line of "Daily Summary - [date]", and send it to [email address] every morning at 8am. Show me the full setup including OAuth.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">07</div><div class="prompt-text">Build a Python script that monitors a website for changes. Check [URL] every [X] minutes, compare the current page content to the last saved version, and send me a desktop notification or email if anything has changed. Save a timestamped snapshot each time a change is detected. Make it run as a background process.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-card"><div class="prompt-number">08</div><div class="prompt-text">Write a script that automates resizing and optimizing images in a folder. For every image in [input folder]: resize it to max width [X]px while keeping aspect ratio, compress it to under [X]KB, convert it to WebP format, and save it to [output folder] with the same filename. Use Python with Pillow. Print the before/after file sizes for each image.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+    </div>
+    <footer>Built with AI · PromptLab © 2025</footer>
+  </div>
+  <script>
+    function copyPrompt(btn) {
+      const text = btn.previousElementSibling.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!'; btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
